@@ -18,3 +18,13 @@ CREATE TABLE recipes(
   creatorId VARCHAR(255) NOT NULL,
   FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
+
+CREATE TABLE IF NOT EXISTS ingredients(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(300) NOT NULL,
+  quantity VARCHAR(225) NOT NULL,
+  recipeId INT NOT NULL,
+  creatorId VARCHAR(255) NOT NULL,
+  FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE,
+  FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE
+) default charset utf8 COMMENT '';
