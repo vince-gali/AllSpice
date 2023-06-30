@@ -19,6 +19,8 @@ CREATE TABLE recipes(
   FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
 
+-- //ANCHOR - vvv ingredients table using creatorId
+
 CREATE TABLE IF NOT EXISTS ingredients(
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(300) NOT NULL,
@@ -28,3 +30,22 @@ CREATE TABLE IF NOT EXISTS ingredients(
   FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE,
   FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
+
+
+-- CREATE TABLE IF NOT EXISTS ingredients(
+--   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--   name VARCHAR(300) NOT NULL,
+--   quantity VARCHAR(225) NOT NULL,
+--   recipeId INT NOT NULL,
+--   FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE
+-- ) default charset utf8 COMMENT '';
+
+
+CREATE TABLE IF NOT EXISTS favorites(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  recipeId INT NOT NULL,
+  accountId VARCHAR(255) NOT NULL,
+  FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE,
+  FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE
+) default charset utf8 COMMENT '';
+

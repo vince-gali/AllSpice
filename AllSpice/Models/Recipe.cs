@@ -1,5 +1,5 @@
-namespace AllSpice.Models
-{
+namespace AllSpice.Models;
+
     public class Recipe
     {
         public int Id {get; set;}
@@ -10,4 +10,8 @@ namespace AllSpice.Models
         public string CreatorId {get; set;}
         public Account Creator {get; set;}
     }
-}
+
+    public class FavoriteRecipe : Recipe
+    {
+        public int FavoriteId {get;set;}
+    }
