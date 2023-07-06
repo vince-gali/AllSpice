@@ -31,10 +31,10 @@ namespace AllSpice.Services
         internal void DeleteIngredient (int ingredientId, string userId)
         {
             Ingredients ingredient = GetById(ingredientId);
-            //TODO - may need to change line below when you take out the creatorId of the ingredients table
-            if(ingredient.CreatorId != userId) throw new Exception("Not allowed to delete that");
-            int rows = _repo.DeleteIngredient(ingredientId);
-            if(rows>1) new Exception("Something went wrong... tried to delete more than one");
+            _repo.DeleteIngredient(ingredientId);
+            // if(rows>1) new Exception("Something went wrong... tried to delete more than one");
         }
     }
 }
+
+

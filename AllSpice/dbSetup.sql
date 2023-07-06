@@ -1,4 +1,4 @@
--- Active: 1687891568252@@SG-lacy-trader-563-7673-mysql-master.servers.mongodirector.com@3306@VinceDb
+-- Active: 1688662885497@@SG-lacy-trader-563-7673-mysql-master.servers.mongodirector.com@3306
 CREATE TABLE IF NOT EXISTS accounts(
   id VARCHAR(255) NOT NULL primary key COMMENT 'primary key',
   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
@@ -21,24 +21,24 @@ CREATE TABLE recipes(
 
 -- //ANCHOR - vvv ingredients table using creatorId
 
-CREATE TABLE IF NOT EXISTS ingredients(
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(300) NOT NULL,
-  quantity VARCHAR(225) NOT NULL,
-  recipeId INT NOT NULL,
-  creatorId VARCHAR(255) NOT NULL,
-  FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE,
-  FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE
-) default charset utf8 COMMENT '';
-
-
 -- CREATE TABLE IF NOT EXISTS ingredients(
 --   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 --   name VARCHAR(300) NOT NULL,
 --   quantity VARCHAR(225) NOT NULL,
 --   recipeId INT NOT NULL,
+--   creatorId VARCHAR(255) NOT NULL,
+--   FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE,
 --   FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE
 -- ) default charset utf8 COMMENT '';
+
+
+CREATE TABLE IF NOT EXISTS ingredients(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(300) NOT NULL,
+  quantity VARCHAR(225) NOT NULL,
+  recipeId INT NOT NULL,
+  FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE
+) default charset utf8 COMMENT '';
 
 
 CREATE TABLE IF NOT EXISTS favorites(

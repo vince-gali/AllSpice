@@ -14,13 +14,14 @@ namespace AllSpice.Controllers
         }
 
         [HttpPost]
-        [Authorize]
-        public async Task<ActionResult> CreateIngredient([FromBody] Ingredients ingredientData)
+        // [Authorize]
+        public ActionResult CreateIngredient([FromBody] Ingredients ingredientData)
         {
             try
             {
-                Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
-                ingredientData.CreatorId = userInfo.Id;
+                // Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
+                // ingredientData.CreatorId = userInfo.Id;
+
                 Ingredients newIngredient = _ingredientsService.CreateIngredient(ingredientData);
                 return Ok(newIngredient);
             }
