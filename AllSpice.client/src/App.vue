@@ -6,8 +6,17 @@
     <router-view />
   </main>
    <footer class="bg-dark text-light">
-    Made with 💖 by CodeWorks
+    <!-- Made with 💖 by CodeWorks -->
+    <div class="mb-5">
+      <!-- <i class="mdi mdi-plus"></i> -->
+      <img data-bs-toggle="modal" data-bs-target="#addRecipe" class=" rounded container-fluid" src="./assets/img/add-recipe.png" alt="">
+    </div>
   </footer>
+
+  <Modal id="addRecipe">
+    <CreateRecipeForm/>
+  </Modal>
+
 </template>
 
 <script>

@@ -1,17 +1,13 @@
 <template>
 
-<!-- <section class="row">
+<section class="row">
   <div class="d-flex flex-column justify-content-center">
     <img class="container-fluid" src="../assets/img/spice-background.png" alt="">
-    <h4 class="text-white "> All Spice</h4>
+    <!-- <div> -->
+    <h4 class="text-white text-center"> All Spice</h4>
+    <!-- </div> -->
   </div>
-</section> -->
-
-<div class="container">
-  <img src="../assets/img/spice-background.png" alt="">
-  <div class="centered">All Spice</div>
-</div>
-
+</section>
 
 
 <section class="row">
@@ -40,6 +36,8 @@
       </h1>
     </div>
   </div> -->
+
+  
 
   dehllo
 </template>
