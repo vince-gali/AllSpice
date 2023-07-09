@@ -11,12 +11,28 @@
         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
         <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
         <div class="d-flex flex-wrap p-1">
-            <div class="card col-md-4 card-header">
+            <div class="card col-6">
+            <div class="card-header">
                 <p>Recipe instructions here</p>
             </div>
-            <div class="card col-md-4">
+            <div class="card-body">
+                <p>1. step 1</p>
+                <p>2. step 2</p>
+                <p>3. step 3</p>
+            </div>
+        </div>
+            <div class="card col-6">
+            <div class="card-header">
                 <p>Ingredients here</p>
             </div>
+            <div class="card-body">
+                <p>1. Ingredients 1</p>
+                <p>2. Ingredients 2</p>
+                <p>3. Ingredients 3</p>
+            </div>
+        </div>
+
+
         </div>
       </div>
     </div>
@@ -80,6 +96,11 @@ aspect-ratio: 1/1;
    position: absolute;
    right: 0px;
    height: 100%;
+}
+
+.card-header{
+    background-color: #527360;
+    color:#fff ;
 }
 
 </style>

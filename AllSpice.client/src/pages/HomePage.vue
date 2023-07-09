@@ -41,8 +41,8 @@
 </section>
 
 
-//NOTE - old recipe card template
-<!-- <section class="row">
+<!-- //NOTE - old recipe card template
+<section class="row">
   <div class="col-3 ">
     <div class="card rounded elevation-4">
       <div class="d-flex reverse-column">
@@ -62,12 +62,12 @@
 
   <section class="row">
   <div class="col-3">
-  <div class="card text-bg-dark">
+  <div data-bs-toggle="modal" data-bs-target="#activeRecipe" class="card text-bg-dark">
     <img src="https://th.bing.com/th/id/R.be8bdfb0c84545fd895880775229d9b4?rik=Nf9uPWQbmpIOVA&riu=http%3a%2f%2fthefoodiechef.com%2fwp-content%2fuploads%2f2014%2f03%2fIMG_6647.jpg&ehk=1wwUX2lqsykp8EAkLXucN0mdJx6GtpUvN0DG%2bxLJnrM%3d&risl=&pid=ImgRaw&r=0" class="card-img" alt="...">
     <div class="card-img-overlay text-bg text-white">
-      <h5 class="card-title ">Soup Category</h5>
+      <h5 class="card-title border border-black ">Soup Category</h5>
       <div class="align-items-center pt-5">
-        <p class="card-text">Recipe Name</p>
+        <p class="card-text text-borders">Recipe Name</p>
         <p class="card-text">Recipe Description</p>
       </div>
     </div>
@@ -217,5 +217,10 @@ height: auto;
   background-color: rgb(124, 118, 118);
   text-shadow: 0 0 5px rgb(0, 0, 0);
 }
+
+// .test{
+//   border: ;
+// }
+
 }
 </style>
