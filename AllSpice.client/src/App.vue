@@ -17,6 +17,10 @@
     <CreateRecipeForm/>
   </Modal>
 
+  <Modal id="activeRecipe">
+    <ActiveRecipeCard/>
+  </Modal>
+
 </template>
 
 <script>

@@ -1,8 +1,8 @@
 <template>
 
     <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title" id="exampleModalLabel">New Recipe</h1>
+            <div class="modal-header bg-green">
+                <h1 class="modal-Provide brief description" id="exampleModalLabel">New Recipe</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
     <form id="addRecipe" action="">
@@ -19,14 +19,10 @@
                             <option value="entree">Entree</option>
                         </select>
                     </div>
-                    <!-- <div>
-                    <select name="type" id="type" v-model="editable.type">
-                        <option value="concert">Concerts</option>
-                        <option value="convention">Conventions</option>
-                        <option value="sport">Sports</option>
-                        <option value="digital">Digital</option>
-                    </select>
-                </div> -->
+                    <div class="form-floating my-3">
+                        <label for="floatingInput">Provide brief description</label>
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Details..">
+                    </div>
         </div>    
     </form>
     </div>
@@ -44,5 +40,10 @@ export default {
 
 
 <style lang="scss" scoped>
+
+.bg-green{
+    background-color: #527360;
+    color: white;
+}
 
 </style>
