@@ -31,14 +31,27 @@
 
 
 <section class="row">
-  <div>
-    <div class=" d-flex justify-content-around rounded">
-        <button @click="getRecipes()" >Home</button>
-      <button @click="getMyRecipes()" >My Recipes</button>
-      <button @click="getFavorites()" >Favorites</button>
+  <div class="">
+    <div class=" text-center">
+        <button class="elevation-3" @click="getRecipes()" >Home</button>
+      <button class="elevation-3" @click="getMyRecipes()" >My Recipes</button>
+      <button class="elevation-3" @click="getFavorites()" >Favorites</button>
     </div>
   </div>
 </section>
+
+
+<section class="row">
+  <div class="text-center">
+    <div class="d-flex flex-wrap ">
+        <p class="p-2 elevation-3" @click="getRecipes()" >Home</p>
+      <p class="p-2 elevation-3" @click="getMyRecipes()" >My Recipes</p>
+      <p class="p-2 elevation-3" @click="getFavorites()" >Favorites</p>
+    </div>
+  </div>
+</section>
+
+
 
 
 <!-- //NOTE - old recipe card template
@@ -61,19 +74,25 @@
 //NOTE - use code below as recipe card template
 
   <section class="row">
-  <div class="col-3">
+  <div class="container-fluid col-3">
   <div data-bs-toggle="modal" data-bs-target="#activeRecipe" class="card text-bg-dark">
     <img src="https://th.bing.com/th/id/R.be8bdfb0c84545fd895880775229d9b4?rik=Nf9uPWQbmpIOVA&riu=http%3a%2f%2fthefoodiechef.com%2fwp-content%2fuploads%2f2014%2f03%2fIMG_6647.jpg&ehk=1wwUX2lqsykp8EAkLXucN0mdJx6GtpUvN0DG%2bxLJnrM%3d&risl=&pid=ImgRaw&r=0" class="card-img" alt="...">
-    <div class="card-img-overlay text-bg text-white">
-      <h5 class="card-title border border-black ">Soup Category</h5>
-      <div class="align-items-center pt-5">
-        <p class="card-text text-borders">Recipe Name</p>
-        <p class="card-text">Recipe Description</p>
+
+    <div class=" card-img-overlay text-bg text-white">
+      <h5 style=" background-color: rgba(53, 53, 53, 0.626);" class=" p-1 w-50 rounded card-title ">Soup Category</h5>
+      <div  class=" pt-5">
+        <p  style=" background-color: rgba(53, 53, 53, 0.626);" class=" w-50 p-1 border border-black rounded card-text text-borders">Recipe Name</p>
+        <p  style=" background-color: rgba(53, 53, 53, 0.626);" class=" w-50 p-1 border border-black rounded card-text">Recipe Description</p>
       </div>
     </div>
+
   </div>
   </div>
   </section>
+
+
+
+  
 
 
 
@@ -211,16 +230,28 @@ height: auto;
   top: 25%;
 }
 
-.text-bg{
-  border-style: solid;
-  border-width: 5px;
-  background-color: rgb(124, 118, 118);
-  text-shadow: 0 0 5px rgb(0, 0, 0);
-}
+// .text-bg{
+//   border-style: solid;
+//   border-width: 5px;
+//   background-color: rgb(124, 118, 118);
+//   text-shadow: 0 0 5px rgb(0, 0, 0);
+// }
 
 // .test{
 //   border: ;
 // }
+
+.text-test{
+  border: solid black;
+  // padding: 10rem;
+  border-color: red;
+}
+
+.text-bg{
+  
+  border: 1 px solid black;
+  background-color: rgba(53, 53, 53, 0.699);
+}
 
 }
 </style>
