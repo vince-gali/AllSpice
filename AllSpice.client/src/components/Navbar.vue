@@ -17,9 +17,17 @@
           </router-link>
         </li>
       </ul>
+
+      <div>
+        <SearchBar/>
+      </div>
+
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
+
+    
+
   </nav>
 </template>
 
