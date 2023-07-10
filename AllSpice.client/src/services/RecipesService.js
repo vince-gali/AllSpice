@@ -18,6 +18,12 @@ class RecipesService{
         logger.log('[GETTING ACTIVE RECIPE BY ID]', AppState.activeRecipe)
     }
 
+    async createRecipe(formData){
+        const res = await api.post('api/recipes', formData)
+        logger.log('[Creating Recipe]', res.data)
+        return res.data
+    }
+
 }
 
 export const recipesService = new RecipesService()

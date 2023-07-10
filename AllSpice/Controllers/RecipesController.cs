@@ -47,6 +47,30 @@ public class RecipesController : ControllerBase
         }
     }
 
+
+    // [HttpGet]
+    // public ActionResult<List<Recipe>> GetAllRecipes(string search)
+    // {
+    //     try
+    //     {
+    //         List<Recipe> recipes;
+    //         if (search == null)
+    //             {
+    //                 recipes=_recipesService.GetAllRecipes();
+    //             }
+    //         else
+    //         {
+    //             recipes = _recipesService.SearchRecipes(search);
+    //         }
+    //     }
+    //     catch (Exception e)
+    //     {
+    //         return BadRequest(e.Message);
+    //     }
+    // }
+
+
+
     [HttpGet("{recipeId}")]
     public ActionResult<Recipe> GetRecipeById(int recipeId)
     {

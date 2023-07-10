@@ -33,15 +33,15 @@
 <section class="row">
   <div class="">
     <div class=" text-center">
-        <button class="elevation-3" @click="getRecipes()" >Home</button>
-      <button class="elevation-3" @click="getMyRecipes()" >My Recipes</button>
-      <button class="elevation-3" @click="getFavorites()" >Favorites</button>
+        <button class="elevation-3" @click="filterBy = ''" >Home</button>
+      <button class="elevation-3" @click="filterBy= 'myRecipes' " >My Recipes</button>
+      <button class="elevation-3" @click="filterBy = 'favorites' " >Favorites</button>
     </div>
   </div>
 </section>
 
 
-<section class="row">
+<!-- <section class="row">
   <div class="text-center">
     <div class="d-flex flex-wrap ">
         <p class="p-2 elevation-3" @click="getRecipes()" >Home</p>
@@ -49,7 +49,7 @@
       <p class="p-2 elevation-3" @click="getFavorites()" >Favorites</p>
     </div>
   </div>
-</section>
+</section> -->
 
 
 
@@ -107,7 +107,7 @@
 </template>
 
 <script>
-import { computed, onMounted, popScopeId } from 'vue';
+import { computed, onMounted, popScopeId, ref } from 'vue';
 import { recipesService } from '../services/RecipesService.js';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
@@ -115,6 +115,8 @@ import { AppState } from '../AppState.js';
 
 export default {
   setup() {
+
+    const filterBy = ref('')
     
     async function getRecipes(){
       try{
@@ -127,15 +129,7 @@ export default {
       }
     }
 
-    async function getMyRecipes(){
-      try {
-        logger.log('getting my recipes pt 1')
-        await recipesService.getMyRecipes()
-      } catch (error) {
-        Pop.error(error.message)
-        logger.log(error)
-      }
-    }
+   
 
     onMounted(()=>{
       getRecipes()
@@ -143,8 +137,19 @@ export default {
 
     return {
 
-      recipes: computed(()=>AppState.recipes),
-      myRecipes: computed(()=>AppState.myRecipes)
+      filterBy,
+
+      recipes: computed(()=> 
+      {
+        if(filterBy.value == ""){
+          return AppState.recipes
+        } else{
+          return AppState.recipes.filter(r => r.creatorId == AppState.account.id)
+        }
+      })
+
+      // recipes: computed(()=>AppState.recipes),
+      // myRecipes: computed(()=>AppState.myRecipes)
     }
   }
 }

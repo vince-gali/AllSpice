@@ -1,34 +1,37 @@
 <template>
 
-<div class="card mb-3" >
+<div class="card mb-3" v-if="recipeProp">
   <div class="row ">
     <div class="col-md-4">
-      <img src="https://th.bing.com/th/id/R.be8bdfb0c84545fd895880775229d9b4?rik=Nf9uPWQbmpIOVA&riu=http%3a%2f%2fthefoodiechef.com%2fwp-content%2fuploads%2f2014%2f03%2fIMG_6647.jpg&ehk=1wwUX2lqsykp8EAkLXucN0mdJx6GtpUvN0DG%2bxLJnrM%3d&risl=&pid=ImgRaw&r=0" class="img-fluid rounded-start" alt="...">
+      <img :src="recipeProp.img" alt="...">
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">{{ recipe.title }}</h5>
-        <p class="card-text">Recipe Description</p>
+        <h5 class="card-title">{{ recipeProp.title }}</h5>
+        <!-- <p class="card-text">{{ recipeProp.description }}</p> -->
         <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
         <div class="d-flex flex-wrap p-1">
             <div class="card col-6">
             <div class="card-header">
-                <p>Recipe instructions here</p>
+                <p>Recipe instructions:</p>
             </div>
             <div class="card-body">
-                <p>1. step 1</p>
-                <p>2. step 2</p>
-                <p>3. step 3</p>
+                <p>{{ recipeProp.instructions }}</p>
+                <!-- <p>2. step 2</p>
+                <p>3. step 3</p> -->
             </div>
         </div>
             <div class="card col-6">
             <div class="card-header">
-                <p>Ingredients here</p>
+                <p>Ingredients List:</p>
             </div>
             <div class="card-body">
-                <p>1. Ingredients 1</p>
-                <p>2. Ingredients 2</p>
-                <p>3. Ingredients 3</p>
+                <form @submit.prevent="addIngredient()">
+                    
+                </form>
+                <!-- <p>{{ recipeProp.ingredients }}</p> -->
+                <!-- <p>2. Ingredients 2</p>
+                <p>3. Ingredients 3</p> -->
             </div>
         </div>
 
@@ -77,7 +80,7 @@ import { AppState } from '../AppState.js';
 export default {
     setup(){
         return {
-            recipe: computed(()=> AppState.activeRecipe)
+            recipeProp: computed(()=> AppState.activeRecipe)
         }
     }
 }

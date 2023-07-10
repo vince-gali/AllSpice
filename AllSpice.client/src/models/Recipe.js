@@ -8,6 +8,7 @@ export class Recipe{
         this.category = data.category
         this.creatorId = data.creatorId
         this.description = data.description
+        
     }
 
 }

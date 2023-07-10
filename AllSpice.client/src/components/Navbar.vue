@@ -19,6 +19,9 @@
       </ul>
 
       <div>
+        <button data-bs-target="#addRecipe" data-bs-toggle="modal">Create recipe</button>
+      </div>
+      <div>
         <SearchBar/>
       </div>
 
