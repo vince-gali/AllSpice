@@ -1,4 +1,4 @@
--- Active: 1688662885497@@SG-lacy-trader-563-7673-mysql-master.servers.mongodirector.com@3306
+-- Active: 1688678157120@@SG-lacy-trader-563-7673-mysql-master.servers.mongodirector.com@3306@VinceDb
 CREATE TABLE IF NOT EXISTS accounts(
   id VARCHAR(255) NOT NULL primary key COMMENT 'primary key',
   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
@@ -15,6 +15,7 @@ CREATE TABLE recipes(
   instructions VARCHAR(300) NOT NULL,
   img VARCHAR(500) NOT NULL,
   category VARCHAR(225) NOT NULL DEFAULT "misc", 
+  description VARCHAR (225) NOT NULL,
   creatorId VARCHAR(255) NOT NULL,
   FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';

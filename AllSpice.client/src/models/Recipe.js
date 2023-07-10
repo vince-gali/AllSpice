@@ -7,6 +7,7 @@ export class Recipe{
         this.img = data.img
         this.category = data.category
         this.creatorId = data.creatorId
+        this.description = data.description
     }
 
 }

@@ -2,10 +2,10 @@
 <template>
 
 <form @submit.prevent="searchPosts()" action="">
-    <div>
+    <div class="d-flex flex-row">
 
         <input type="text" class="w-100 rounded" v-model="search" placeholder="Search...">
-        <button class="mdi mdi-magnify" type="submit"></button>
+        <!-- <button class="mdi mdi-magnify" type="submit"></button> -->
         <i class="mdi mdi-magnify"></i>
     </div>
     </form>

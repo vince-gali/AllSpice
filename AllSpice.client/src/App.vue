@@ -7,8 +7,7 @@
   </main>
    <footer class="bg-dark text-light">
     <!-- Made with 💖 by CodeWorks -->
-    <div class="mb-5">
-      <!-- <i class="mdi mdi-plus"></i> -->
+    <div class="mb-5 sticky-bottom">
       <img data-bs-toggle="modal" data-bs-target="#addRecipe" class=" rounded container-fluid" src="./assets/img/add-recipe.png" alt="">
     </div>
   </footer>
@@ -49,5 +48,11 @@ footer {
   display: grid;
   place-content: center;
   height: 32px;
+}
+
+.sticky {
+  position: -webkit-sticky; 
+  position: sticky;
+  top: 0;
 }
 </style>
