@@ -1,6 +1,6 @@
 <template>
 
-<div data-bs-toggle="modal" data-bs-target="#activeRecipe" class="card text-bg-dark">
+<div @click="setActiveRecipe(recipeId)" data-bs-toggle="modal" data-bs-target="#activeRecipe" class="card text-bg-dark">
     <img :src=" recipeProp.img " class="card-img" alt="...">
 
     <div class=" card-img-overlay text-bg text-white">
@@ -17,14 +17,34 @@
 
 
 <script>
+import { Modal } from 'bootstrap';
+import { AppState } from '../AppState.js';
 import { Recipe } from '../models/Recipe.js';
+import { recipesService } from '../services/RecipesService.js';
+import { logger } from '../utils/Logger.js';
+import Pop from '../utils/Pop.js';
 export default {
 
     props: {
         recipeProp: {type: Recipe, required:true}
     },
     setup(){
-        return {}
+
+      
+      
+
+        return {
+          
+          async setActiveRecipe(recipeId){
+            try {
+              await recipesService.setActiveRecipeById(recipeId)
+              Modal.getOrCreateInstance('#activeRecipe').show()
+            } catch (error) {
+              Pop.error(error)
+            }
+          }
+
+        }
     }
 }
 </script>

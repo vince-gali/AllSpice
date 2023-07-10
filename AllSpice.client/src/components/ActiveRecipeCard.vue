@@ -7,8 +7,8 @@
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">ffsf</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <h5 class="card-title">{{ recipe.title }}</h5>
+        <p class="card-text">Recipe Description</p>
         <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
         <div class="d-flex flex-wrap p-1">
             <div class="card col-6">
@@ -71,9 +71,14 @@
 
 
 <script>
+import { computed } from 'vue';
+import { AppState } from '../AppState.js';
+
 export default {
     setup(){
-        return {}
+        return {
+            recipe: computed(()=> AppState.activeRecipe)
+        }
     }
 }
 </script>

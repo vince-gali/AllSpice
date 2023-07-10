@@ -13,6 +13,11 @@ class RecipesService{
         AppState.recipes = res.data.map(r=> new Recipe(r))
     }
 
+    async setActiveRecipeById(recipeId){
+        AppState.activeRecipe = AppState.recipes.find(r=> r.id == recipeId)
+        logger.log('[GETTING ACTIVE RECIPE BY ID]', AppState.activeRecipe)
+    }
+
 }
 
 export const recipesService = new RecipesService()
