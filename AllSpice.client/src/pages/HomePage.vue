@@ -74,19 +74,8 @@
 //NOTE - use code below as recipe card template
 
   <section class="row">
-  <div class="container-fluid col-3">
-  <div data-bs-toggle="modal" data-bs-target="#activeRecipe" class="card text-bg-dark">
-    <img src="https://th.bing.com/th/id/R.be8bdfb0c84545fd895880775229d9b4?rik=Nf9uPWQbmpIOVA&riu=http%3a%2f%2fthefoodiechef.com%2fwp-content%2fuploads%2f2014%2f03%2fIMG_6647.jpg&ehk=1wwUX2lqsykp8EAkLXucN0mdJx6GtpUvN0DG%2bxLJnrM%3d&risl=&pid=ImgRaw&r=0" class="card-img" alt="...">
-
-    <div class=" card-img-overlay text-bg text-white">
-      <h5 style=" background-color: rgba(53, 53, 53, 0.626);" class=" p-1 w-50 rounded card-title ">Soup Category</h5>
-      <div  class=" pt-5">
-        <p  style=" background-color: rgba(53, 53, 53, 0.626);" class=" w-50 p-1 border border-black rounded card-text text-borders">Recipe Name</p>
-        <p  style=" background-color: rgba(53, 53, 53, 0.626);" class=" w-50 p-1 border border-black rounded card-text">Recipe Description</p>
-      </div>
-    </div>
-
-  </div>
+  <div class="container-fluid col-3" v-for="r in recipes" :key="r">
+  <RecipeCard :recipeProp="r"/>
   </div>
   </section>
 

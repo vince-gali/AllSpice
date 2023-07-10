@@ -1,11 +1,17 @@
 <template>
 
-    <!-- <div class="card">
-        <img src="" alt="">
-        <p>{{recipeProp.title}}</p>
-    </div> -->
+<div data-bs-toggle="modal" data-bs-target="#activeRecipe" class="card text-bg-dark">
+    <img :src=" recipeProp.img " class="card-img" alt="...">
 
-    {{recipeProp}}
+    <div class=" card-img-overlay text-bg text-white">
+      <h5 style=" background-color: rgba(53, 53, 53, 0.626);" class=" p-1 w-50 rounded card-title ">Soup Category</h5>
+      <div  class=" pt-5">
+        <p  style=" background-color: rgba(53, 53, 53, 0.626);" class=" w-50 p-1 border border-black rounded card-text text-borders">{{ recipeProp.title }}</p>
+        <p  style=" background-color: rgba(53, 53, 53, 0.626);" class=" w-50 p-1 border border-black rounded card-text">Recipe Description</p>
+      </div>
+    </div>
+
+  </div>
 
 </template>
 
