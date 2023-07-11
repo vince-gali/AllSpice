@@ -79,7 +79,7 @@
 //NOTE - use code below as recipe card template
 
   <section class="row">
-  <div class="py-2 container-fluid col-3" v-for="r in recipes" :key="r">
+  <div class=" container-fluid col-3" v-for="r in recipes" :key="r">
   <RecipeCard :recipeProp="r"/>
   </div>
   </section>

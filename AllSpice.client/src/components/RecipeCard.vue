@@ -13,7 +13,13 @@
 
   </div>
 
-       
+<!-- <div>
+  <img :src="recipeProp.img" alt="">
+
+  <div class="card-img-overlay">
+    <h5>{{ recipeProp.category }}</h5>
+  </div>
+</div> -->
 
 
 

@@ -17,35 +17,32 @@
             </div>
             <div class="card-body">
                 <p>{{ recipeProp.instructions }}</p>
+                <!-- <p>{{ recipeProp.id }}</p> -->
                 <div>
-                    <form >
+                    <form v-if="recipeProp.creatorId == user.id">
                         <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Add Instruction"  aria-describedby="button-addon2">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2"> <i class="mdi mdi-plus"></i> </button>
-                     </div>
+                            <input v-model="editable.instructions" type="text" class="form-control" placeholder="Add Instruction"  aria-describedby="button-addon2">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2"> <i class="mdi mdi-plus"></i> </button>
+                        </div>
                     </form>
 
-                    <!-- <form action="">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Add Instruction">
-                            <button> <i class="mdi mdi-plus"></i> </button>
-                        </div>
-                    </form> -->
-
-
-                    
 
                 </div>
             </div>
-        </div>
+            </div>
             <div class="card col-6">
             <div class="card-header">
                 <p>Ingredients List:</p>
             </div>
             <div class="card-body">
-                <form @submit.prevent="addIngredient()">
+                <div>
+                    {{ recipeIngredients }}
+                    <!-- <p>{{ recipeIngredients.name }}</p> -->
+                </div>
+
+                <form v-if="recipeProp.creatorId == user.id" @submit.prevent="addIngredient()">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Add Ingredient" aria-label="Add Ingredient" aria-describedby="button-addon2">
+                        <input v-model="editable.ingredient" type="text" class="form-control" placeholder="Add Ingredient" aria-label="Add Ingredient" aria-describedby="button-addon2">
                         <button class="btn btn-outline-secondary" type="button" id="button-addon2"> <i class="mdi mdi-plus"></i> </button>
                      </div>
                 </form>
@@ -55,7 +52,7 @@
             </div>
         </div>
 
-        <div>
+        <div class="modal-footer">
             <!-- <button >Remove Recipe</button> -->
             <button class="bg-danger" @click="deleteRecipe(recipeProp.id)" v-if="recipeProp.creatorId == user.id">Remove Recipe</button>
         </div>
@@ -68,20 +65,9 @@
 </div>
 
 
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="..." class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
-  </div>
-</div>
+
+
+
 
 
 <!-- <section class="row">
@@ -111,58 +97,82 @@
 
 
 
-<!-- <div class="modal-body">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-9 flex-wrap">
-        <img :src="recipeProp?.img" alt="">
-        <div class="row">
-          <div class="col-8 col-sm-6">
-            <h5>{{ recipeProp.title }}</h5>
-          </div>
-          <div class="col-4 col-sm-6">
-            Level 2: .col-4 .col-sm-6
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-
 
 </template>
 
 
 <script>
-import { computed } from 'vue';
+import { computed, onMounted, ref, watchEffect } from 'vue';
 import { AppState } from '../AppState.js';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { recipesService } from '../services/RecipesService.js';
+import { ingredientsService } from '../services/IngredientsService.js';
+import { useRoute } from 'vue-router';
+import { Recipe } from '../models/Recipe.js';
 
 export default {
-    setup(){
+
+    props:{
+        recipeProp: {type: Recipe, required: true}
+    },
+    setup(props){
+        const editable = ref({})
+        const route = useRoute()
+        // const recipeIngredients = ref()
+        watchEffect (()=>{
+            // editable.value = props.recipeProp
+            if (AppState.activeRecipe){
+                getIngredientsByRecipeId()
+            }
+        })
+
+        async function getIngredientsByRecipeId(){
+            try {
+                // debugger
+                // const recipeId = route.params.id
+                logger.log(props.recipeProp)
+                await ingredientsService.getIngredientsByRecipeId(AppState.activeRecipe.id)
+            } catch (error) {
+                logger.error(error)
+                Pop.toast(error.message, 'error')
+            }
+        }
+
+        // onMounted(()=> {
+        //     getIngredientsByRecipeId()
+        // })
 
         
         return {
+            editable,
 
             
             recipeProp: computed(()=> AppState.activeRecipe),
             user: computed(()=> AppState.user),
+            // ingredients: computed(()=>AppState.ingredients),
+            recipeIngredients: computed(()=>AppState.ingredients.filter(i => i.recipeId == AppState.activeRecipe.id)),
+            // activeRecipe: computed(()=> AppState.activeRecipe),
 
-            async deleteRecipe(){
-                try {
-                    
-                } catch (error) {
-                    
-                }
-            },
+            
 
             async deleteRecipe(recipeId){
                 try {
+                    if(await Pop.confirm('are you sure you want to delete your recipe'))
                     logger.log('deleting yes')
                     await recipesService.deleteRecipe(recipeId)
+                } catch (error) {
+                    logger.error(error)
+                    Pop.toast(error.message, 'error')
+                }
+            },
+
+            async addIngredient(){
+                try {
+                    const formData = editable.value
+                    formData.recipeId = route.params.id
+                    await ingredientsService.addIngredient(formData)
+                    editable.value = {}
                 } catch (error) {
                     logger.error(error)
                     Pop.toast(error.message, 'error')
@@ -203,6 +213,9 @@ aspect-ratio: 1/1;
 }
 .img{
     width: 100%;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-content: center;
     // object-fit: c;
 }
 
