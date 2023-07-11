@@ -16,7 +16,7 @@
 
 <div class="card text-bg-dark">
   <img src="../assets/img/spice-background.png" class="card-img" alt="...">
-  <div class="card-img-overlay text-center py-3">
+  <div class="align-content-center card-img-overlay text-center py-3">
     <h5 class="card-title">All Spice</h5>
     <p class="card-text">Cherish Your Family</p>
     <p class="card-text">And Their Cooking</p>
@@ -71,10 +71,15 @@
   </div>
 </section> -->
 
+
+
+
+
+
 //NOTE - use code below as recipe card template
 
   <section class="row">
-  <div class="container-fluid col-3" v-for="r in recipes" :key="r">
+  <div class="py-2 container-fluid col-3" v-for="r in recipes" :key="r">
   <RecipeCard :recipeProp="r"/>
   </div>
   </section>

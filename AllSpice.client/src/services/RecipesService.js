@@ -24,6 +24,13 @@ class RecipesService{
         return res.data
     }
 
+    async deleteRecipe(recipeId){
+        logger.log('[Deleting Recipe]', recipeId)
+        const res = await api.delete(`api/recipes/${recipeId}`)
+        logger.log('[Deleting Recipe pt 2]', res.data)
+        AppState.recipes = AppState.recipes.filter(r=> r.id != recipeId)
+    }
+
 }
 
 export const recipesService = new RecipesService()

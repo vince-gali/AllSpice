@@ -1,8 +1,6 @@
 <template>
 
-<!-- <active-recipe-card id="activeRecipeModal"></active-recipe-card> -->
-<!-- <div @click="setActiveRecipe(recipeId)" data-bs-toggle="modal" data-bs-target="#activeRecipe" class="card text-bg-dark"> -->
-<div @click="setActiveRecipe(recipeProp.id)" class="card text-bg-dark">
+<div  @click="setActiveRecipe(recipeProp.id)" class="card text-bg-dark recipe-card">
     <img  :src=" recipeProp.img " class="card-img" alt="...">
 
     <div class=" card-img-overlay text-bg text-white">
@@ -14,6 +12,10 @@
     </div>
 
   </div>
+
+       
+
+
 
 </template>
 
@@ -51,5 +53,11 @@ export default {
 
 
 <style lang="scss" scoped>
+
+.recipe-card{
+width: 100%;
+height: 35dvh;
+object-fit: cover;
+}
 
 </style>
