@@ -48,8 +48,10 @@ public class RecipesController : ControllerBase
     }
 
 
+//FIXME - fix get request below and replace the one above
+
     // [HttpGet]
-    // public ActionResult<List<Recipe>> GetAllRecipes(string search)
+    // public ActionResult<List<Recipe>> GetAllRecipes (string search)
     // {
     //     try
     //     {

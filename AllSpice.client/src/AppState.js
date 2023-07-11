@@ -13,6 +13,8 @@ export const AppState = reactive({
 
   activeRecipe: null,
 
-  ingredients: []
+  ingredients: [],
+
+  query: null
 
 })

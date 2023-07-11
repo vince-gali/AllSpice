@@ -47,6 +47,12 @@ namespace AllSpice.Services
             return original;
         }
 
+        internal List<Recipe> SearchRecipes(string search)
+        {
+            List<Recipe> recipes = _repo.SearchRecipes(search);
+            return recipes;
+        }
+
 
     }
 }

@@ -90,6 +90,25 @@ namespace AllSpice.Repositories
             _db.Execute(sql, updateData);
         }
 
+        internal List<Recipe> SearchRecipes(string search)
+        {
+            search = '%' + search + '%';
+            string sql = @"
+            SELECT
+            rec.*,
+            act.*
+            FROM recipes rec
+            JOIN accounts act ON act.id = rec.creatorId
+            WHERE rec.title LIKE @search
+            ;";
+            List<Recipe> recipes = _db.Query<Recipe, Account, Recipe> (sql, (rec, profile)=>
+            {
+                rec.Creator = profile;
+                return rec;
+            }, new {search}).ToList();
+            return recipes;
+        }
+
 
     }
 }

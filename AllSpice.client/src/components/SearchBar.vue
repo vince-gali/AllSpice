@@ -1,7 +1,7 @@
 
 <template>
 
-<form @submit.prevent="searchPosts()" action="">
+<form @submit.prevent="searchRecipes()" action="">
     <div class="d-flex flex-row">
 
         <input type="text" class="w-100 rounded" v-model="search" placeholder="Search...">
@@ -14,9 +14,28 @@
 
 
 <script>
+import { ref } from 'vue';
+import { logger } from '../utils/Logger.js';
+import { recipesService } from '../services/RecipesService.js';
+
 export default {
     setup(){
-        return {}
+
+        const search = ref({})
+        return {
+
+            search, 
+            
+            async searchRecipes(){
+                try {
+                    const searchTerm = search.value
+                    logger.log('searching recipes', searchTerm)
+                    await recipesService.searchRecipes(searchTerm)
+                } catch (error) {
+                    logger.error(error)
+                }
+            }
+        }
     }
 }
 </script>

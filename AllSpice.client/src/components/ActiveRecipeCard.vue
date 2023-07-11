@@ -8,6 +8,7 @@
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title">{{ recipeProp.title }}</h5>
+<!-- import AddIngredientForm from './AddIngredientForm.vue.js'; -->
         <!-- <p class="card-text">{{ recipeProp.description }}</p> -->
         <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
         <div class="d-flex flex-wrap p-1">
@@ -39,16 +40,12 @@
                     {{ recipeIngredients }}
                     <!-- <p>{{ recipeIngredients.name }}</p> -->
                 </div>
-
                 <form v-if="recipeProp.creatorId == user.id" @submit.prevent="addIngredient()">
                     <div class="input-group mb-3">
                         <input v-model="editable.ingredient" type="text" class="form-control" placeholder="Add Ingredient" aria-label="Add Ingredient" aria-describedby="button-addon2">
                         <button class="btn btn-outline-secondary" type="button" id="button-addon2"> <i class="mdi mdi-plus"></i> </button>
                      </div>
                 </form>
-                <!-- <p>{{ recipeProp.ingredients }}</p> -->
-                <!-- <p>2. Ingredients 2</p>
-                <p>3. Ingredients 3</p> -->
             </div>
         </div>
 
@@ -56,6 +53,11 @@
             <!-- <button >Remove Recipe</button> -->
             <button class="bg-danger" @click="deleteRecipe(recipeProp.id)" v-if="recipeProp.creatorId == user.id">Remove Recipe</button>
         </div>
+
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
 
 
         </div>
@@ -112,74 +114,67 @@ import { useRoute } from 'vue-router';
 import { Recipe } from '../models/Recipe.js';
 
 export default {
-
-    props:{
-        recipeProp: {type: Recipe, required: true}
+    props: {
+        recipeProp: { type: Recipe, required: true }
     },
-    setup(props){
-        const editable = ref({})
-        const route = useRoute()
+    setup(props) {
+        const editable = ref({});
+        const route = useRoute();
         // const recipeIngredients = ref()
-        watchEffect (()=>{
+        watchEffect(() => {
             // editable.value = props.recipeProp
-            if (AppState.activeRecipe){
-                getIngredientsByRecipeId()
+            if (AppState.activeRecipe) {
+                getIngredientsByRecipeId();
             }
-        })
-
-        async function getIngredientsByRecipeId(){
+        });
+        async function getIngredientsByRecipeId() {
             try {
                 // debugger
                 // const recipeId = route.params.id
-                logger.log(props.recipeProp)
-                await ingredientsService.getIngredientsByRecipeId(AppState.activeRecipe.id)
-            } catch (error) {
-                logger.error(error)
-                Pop.toast(error.message, 'error')
+                logger.log(props.recipeProp);
+                await ingredientsService.getIngredientsByRecipeId(AppState.activeRecipe.id);
+            }
+            catch (error) {
+                logger.error(error);
+                Pop.toast(error.message, "error");
             }
         }
-
         // onMounted(()=> {
         //     getIngredientsByRecipeId()
         // })
-
-        
         return {
             editable,
-
-            
-            recipeProp: computed(()=> AppState.activeRecipe),
-            user: computed(()=> AppState.user),
+            recipeProp: computed(() => AppState.activeRecipe),
+            user: computed(() => AppState.user),
             // ingredients: computed(()=>AppState.ingredients),
-            recipeIngredients: computed(()=>AppState.ingredients.filter(i => i.recipeId == AppState.activeRecipe.id)),
+            recipeIngredients: computed(() => AppState.ingredients.filter(i => i.recipeId == AppState.activeRecipe.id)),
             // activeRecipe: computed(()=> AppState.activeRecipe),
-
-            
-
-            async deleteRecipe(recipeId){
+            async deleteRecipe(recipeId) {
                 try {
-                    if(await Pop.confirm('are you sure you want to delete your recipe'))
-                    logger.log('deleting yes')
-                    await recipesService.deleteRecipe(recipeId)
-                } catch (error) {
-                    logger.error(error)
-                    Pop.toast(error.message, 'error')
+                    if (await Pop.confirm("are you sure you want to delete your recipe"))
+                        logger.log("deleting yes");
+                    await recipesService.deleteRecipe(recipeId);
+                }
+                catch (error) {
+                    logger.error(error);
+                    Pop.toast(error.message, "error");
                 }
             },
-
-            async addIngredient(){
+            async addIngredient() {
                 try {
-                    const formData = editable.value
-                    formData.recipeId = route.params.id
-                    await ingredientsService.addIngredient(formData)
-                    editable.value = {}
-                } catch (error) {
-                    logger.error(error)
-                    Pop.toast(error.message, 'error')
+                    const formData = editable.value;
+                    formData.recipeId = route.params.id;
+                    await ingredientsService.addIngredient(formData);
+                    editable.value = {};
+                }
+                catch (error) {
+                    logger.error(error);
+                    Pop.toast(error.message, "error");
                 }
             }
-        }
-    }
+        };
+    },
+    // components: { AddIngredientForm }
 }
 </script>
 
