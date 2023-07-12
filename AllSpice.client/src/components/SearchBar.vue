@@ -21,7 +21,7 @@ import { recipesService } from '../services/RecipesService.js';
 export default {
     setup(){
 
-        const search = ref({})
+        const search = ref('')
         return {
 
             search, 

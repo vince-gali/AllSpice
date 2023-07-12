@@ -5,6 +5,7 @@
 
     <div class=" card-img-overlay text-bg text-white">
       <h5 style=" background-color: rgba(53, 53, 53, 0.626);" class=" p-1 w-50 rounded card-title ">{{ recipeProp.category }}</h5>
+      <i @click="addFavorite()" class="mdi mdi-heart-outline"></i>
       <div  class=" pt-5">
         <p  style=" background-color: rgba(53, 53, 53, 0.626);" class=" w-50 p-1 border border-black rounded card-text text-borders">{{ recipeProp.title }}</p>
         <p  style=" background-color: rgba(53, 53, 53, 0.626);" class=" w-50 p-1 border border-black rounded card-text">Recipe Description</p>
@@ -49,6 +50,14 @@ export default {
               Modal.getOrCreateInstance('#activeRecipe').show()
             } catch (error) {
               Pop.error(error)
+            }
+          },
+
+          async addFavorite(){
+            try {
+              
+            } catch (error) {
+              
             }
           }
 

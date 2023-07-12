@@ -15,6 +15,8 @@ export const AppState = reactive({
 
   ingredients: [],
 
-  query: null
+  query: null,
+
+  favorites: []
 
 })

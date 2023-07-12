@@ -1,6 +1,6 @@
 <template>
 
-<div class="card mb-3" v-if="recipeProp">
+<div class="card mb-3 modal-content" v-if="recipeProp">
   <div class="row ">
     <div class="col-4">
       <img class="img" :src="recipeProp.img" alt="...">
@@ -8,9 +8,6 @@
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title">{{ recipeProp.title }}</h5>
-<!-- import AddIngredientForm from './AddIngredientForm.vue.js'; -->
-        <!-- <p class="card-text">{{ recipeProp.description }}</p> -->
-        <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
         <div class="d-flex flex-wrap p-1">
             <div class="card col-6">
             <div class="card-header">
@@ -18,8 +15,7 @@
             </div>
             <div class="card-body">
                 <p>{{ recipeProp.instructions }}</p>
-                <!-- <p>{{ recipeProp.id }}</p> -->
-                <div>
+                <div class="modal-body">
                     <form v-if="recipeProp.creatorId == user.id">
                         <div class="input-group mb-3">
                             <input v-model="editable.instructions" type="text" class="form-control" placeholder="Add Instruction"  aria-describedby="button-addon2">
@@ -38,7 +34,6 @@
             <div class="card-body">
                 <div>
                     {{ recipeIngredients }}
-                    <!-- <p>{{ recipeIngredients.name }}</p> -->
                 </div>
                 <form v-if="recipeProp.creatorId == user.id" @submit.prevent="addIngredient()">
                     <div class="input-group mb-3">
@@ -50,7 +45,6 @@
         </div>
 
         <div class="modal-footer">
-            <!-- <button >Remove Recipe</button> -->
             <button class="bg-danger" @click="deleteRecipe(recipeProp.id)" v-if="recipeProp.creatorId == user.id">Remove Recipe</button>
         </div>
 
@@ -67,35 +61,41 @@
 </div>
 
 
-
-
-
-
-
-<!-- <section class="row">
-    <div class="col-10">
-        <div class="d-flex flex-wrap">
-        <div class="col-md-4">
-            <img class="img-fluid rounded-start" src="https://th.bing.com/th/id/R.be8bdfb0c84545fd895880775229d9b4?rik=Nf9uPWQbmpIOVA&riu=http%3a%2f%2fthefoodiechef.com%2fwp-content%2fuploads%2f2014%2f03%2fIMG_6647.jpg&ehk=1wwUX2lqsykp8EAkLXucN0mdJx6GtpUvN0DG%2bxLJnrM%3d&risl=&pid=ImgRaw&r=0" alt="">
-        </div>
-        <div class="col-md-6">
-            <div>
-                <h5>Recipe name</h5>
-                <p>Recipe description</p>
+<!-- <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form @submit="addIngredient">
+    
+        <div class="card bg-white">
+    
+            <div class="form-group mb-3 form-body">
+                <label for="ingredient">Ingredient</label>
+                <input type="text" class="form-control" name="ingredient" v-model="editable.ingredients" required>
             </div>
+            <div class="form-group mb-3">
+                <label for="quantity">Quantity</label>
+                <input type="text" class="form-control" name="quantity" v-model="editable.ingredients" required>
+            </div>
+            
             <div class="">
-                <div class="card">
-                    recipe instructions
-                </div>
-                <div class="card">
-                    recipe Ingredients
-                </div>
+                <button> <i class="mdi mdi-plus"></i> </button>
             </div>
-
+    
         </div>
-    </div>
-    </div>
-</section> -->
+    
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div> -->
+
+
+
 
 
 
@@ -148,7 +148,6 @@ export default {
             user: computed(() => AppState.user),
             // ingredients: computed(()=>AppState.ingredients),
             recipeIngredients: computed(() => AppState.ingredients.filter(i => i.recipeId == AppState.activeRecipe.id)),
-            // activeRecipe: computed(()=> AppState.activeRecipe),
             async deleteRecipe(recipeId) {
                 try {
                     if (await Pop.confirm("are you sure you want to delete your recipe"))

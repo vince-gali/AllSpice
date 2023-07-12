@@ -6,7 +6,7 @@ import { api } from "./AxiosService.js"
 class IngredientsService{
 
     async addIngredient(formData){
-        const res = await api.post(`api/recipes`, formData)
+        const res = await api.post(`api/ingredients`, formData)
         logger.log('[Adding ingredient to list]', res.data)
         AppState.ingredients.push(new Ingredients(res.data))
     }
