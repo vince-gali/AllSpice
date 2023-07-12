@@ -9,6 +9,7 @@ class IngredientsService{
         const res = await api.post(`api/ingredients`, formData)
         logger.log('[Adding ingredient to list]', res.data)
         AppState.ingredients.push(new Ingredients(res.data))
+        return res.data
     }
 
     async getIngredientsByRecipeId(recipeId){

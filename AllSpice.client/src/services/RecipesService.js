@@ -41,6 +41,12 @@ class RecipesService{
         AppState.recipes = res.data.map(r=> new Recipe(r))
     }
 
+    async addInstruction(formData){
+        const res = await api.put(`api/recipes`, formData)
+        logger.log('adding step to recipe', res.data)
+        // AppState.instructions.push()
+    }
+
 }
 
 export const recipesService = new RecipesService()

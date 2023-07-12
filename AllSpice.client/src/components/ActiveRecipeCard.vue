@@ -16,7 +16,7 @@
             <div class="card-body">
                 <p>{{ recipeProp.instructions }}</p>
                 <div class="modal-body">
-                    <form v-if="recipeProp.creatorId == user.id">
+                    <form @submit="addInstruction()" v-if="recipeProp.creatorId == user.id">
                         <div class="input-group mb-3">
                             <input v-model="editable.instructions" type="text" class="form-control" placeholder="Add Instruction"  aria-describedby="button-addon2">
                             <button class="btn btn-outline-secondary" type="button" id="button-addon2"> <i class="mdi mdi-plus"></i> </button>
@@ -104,7 +104,7 @@
 
 
 <script>
-import { computed, onMounted, ref, watchEffect } from 'vue';
+import { computed, onMounted, popScopeId, ref, watchEffect } from 'vue';
 import { AppState } from '../AppState.js';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
@@ -169,6 +169,18 @@ export default {
                 catch (error) {
                     logger.error(error);
                     Pop.toast(error.message, "error");
+                }
+            },
+
+            async addInstruction(){
+                try {
+                    const formData = editable.value
+                    formData.recipeId = route.params.id
+                    await recipesService.addInstruction(formData)
+                    editable.value={}
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error.message, 'error')
                 }
             }
         };
