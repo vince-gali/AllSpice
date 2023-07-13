@@ -18,8 +18,8 @@
                 <div class="modal-body">
                     <form @submit="addInstruction()" v-if="recipeProp.creatorId == user.id">
                         <div class="input-group mb-3">
-                            <input v-model="editable.instructions" type="text" class="form-control" placeholder="Add Instruction"  aria-describedby="button-addon2">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2"> <i class="mdi mdi-plus"></i> </button>
+                            <input  type="text" class="form-control" placeholder="Add Instruction"  aria-describedby="button-addon2">
+                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2"> <i class="mdi mdi-plus"></i> </button>
                         </div>
                     </form>
 
@@ -37,9 +37,12 @@
                 </div>
                 <form v-if="recipeProp.creatorId == user.id" @submit.prevent="addIngredient()">
                     <div class="input-group mb-3">
-                        <input v-model="editable.ingredient" type="text" class="form-control" placeholder="Add Ingredient" aria-label="Add Ingredient" aria-describedby="button-addon2">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2"> <i class="mdi mdi-plus"></i> </button>
+                        <input v-model="editable.name" type="text" class="form-control" name="name" placeholder="Add Ingredient" aria-label="Ingredient" aria-describedby="button-addon2">
                      </div>
+                     <div>
+                        <input v-model="editable.quantity" type="text" class="form-control" name="quantity" placeholder="Qty:" aria-label="Quantity" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2"> <i class="mdi mdi-plus"></i> </button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -59,41 +62,6 @@
     </div>
   </div>
 </div>
-
-
-<!-- <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form @submit="addIngredient">
-    
-        <div class="card bg-white">
-    
-            <div class="form-group mb-3 form-body">
-                <label for="ingredient">Ingredient</label>
-                <input type="text" class="form-control" name="ingredient" v-model="editable.ingredients" required>
-            </div>
-            <div class="form-group mb-3">
-                <label for="quantity">Quantity</label>
-                <input type="text" class="form-control" name="quantity" v-model="editable.ingredients" required>
-            </div>
-            
-            <div class="">
-                <button> <i class="mdi mdi-plus"></i> </button>
-            </div>
-    
-        </div>
-    
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div> -->
-
 
 
 
@@ -143,11 +111,13 @@ export default {
         //     getIngredientsByRecipeId()
         // })
         return {
+
             editable,
             recipeProp: computed(() => AppState.activeRecipe),
             user: computed(() => AppState.user),
             // ingredients: computed(()=>AppState.ingredients),
             recipeIngredients: computed(() => AppState.ingredients.filter(i => i.recipeId == AppState.activeRecipe.id)),
+
             async deleteRecipe(recipeId) {
                 try {
                     if (await Pop.confirm("are you sure you want to delete your recipe"))
