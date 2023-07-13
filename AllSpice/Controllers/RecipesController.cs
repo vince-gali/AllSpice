@@ -33,43 +33,43 @@ public class RecipesController : ControllerBase
         }
     }
 
-    [HttpGet]
-    public ActionResult<List<Recipe>> GetAllRecipes()
-    {
-        try
-        {
-            List<Recipe> recipes = _recipesService.GetAllRecipes();
-            return Ok(recipes);
-        }
-        catch (Exception e)
-        {
-            return BadRequest(e.Message);
-        }
-    }
-
-
-//FIXME - fix get request below and replace the one above
-
     // [HttpGet]
-    // public ActionResult<List<Recipe>> GetAllRecipes (string search)
+    // public ActionResult<List<Recipe>> GetAllRecipes()
     // {
     //     try
     //     {
-    //         List<Recipe> recipes;
-    //         if (search == null)
-    //             {
-    //                 recipes=_recipesService.GetAllRecipes();
-    //             }
-    //         else
-    //         {
-    //             recipes = _recipesService.SearchRecipes(search);
-    //         }
+    //         List<Recipe> recipes = _recipesService.GetAllRecipes();
+    //         return Ok(recipes);
     //     }
     //     catch (Exception e)
     //     {
     //         return BadRequest(e.Message);
     //     }
     // }
+
+
+
+    [HttpGet]
+    public ActionResult<List<Recipe>> GetAllRecipes (string search)
+    {
+        try
+        {
+            List<Recipe> recipes;
+            if (search == null)
+                {
+                    recipes=_recipesService.GetAllRecipes();
+                }
+            else
+            {
+                recipes = _recipesService.SearchRecipes(search);
+            }
+            return recipes;
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 
 
 

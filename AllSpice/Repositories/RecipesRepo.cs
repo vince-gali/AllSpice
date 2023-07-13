@@ -99,7 +99,7 @@ namespace AllSpice.Repositories
             act.*
             FROM recipes rec
             JOIN accounts act ON act.id = rec.creatorId
-            WHERE rec.title LIKE @search
+            WHERE rec.category LIKE @search
             ;";
             List<Recipe> recipes = _db.Query<Recipe, Account, Recipe> (sql, (rec, profile)=>
             {

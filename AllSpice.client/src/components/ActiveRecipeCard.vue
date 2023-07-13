@@ -18,11 +18,10 @@
                 <div class="modal-body">
                     <form @submit="addInstruction()" v-if="recipeProp.creatorId == user.id">
                         <div class="input-group mb-3">
-                            <input  type="text" class="form-control" placeholder="Add Instruction"  aria-describedby="button-addon2">
+                            <input v-model="editable.instructions" type="text"  class="form-control" placeholder="Add Instruction"  aria-describedby="button-addon2">
                             <button class="btn btn-outline-secondary" type="submit" id="button-addon2"> <i class="mdi mdi-plus"></i> </button>
                         </div>
                     </form>
-
 
                 </div>
             </div>
