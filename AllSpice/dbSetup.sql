@@ -1,4 +1,4 @@
--- Active: 1688678157120@@SG-lacy-trader-563-7673-mysql-master.servers.mongodirector.com@3306@VinceDb
+-- Active: 1688678157120@@SG-lacy-trader-563-7673-mysql-master.servers.mongodirector.com@3306
 CREATE TABLE IF NOT EXISTS accounts(
   id VARCHAR(255) NOT NULL primary key COMMENT 'primary key',
   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',

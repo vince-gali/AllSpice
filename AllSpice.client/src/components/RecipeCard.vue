@@ -1,7 +1,7 @@
 <template>
 
-<div  class="card text-bg-dark recipe-card">
-    <img  :src=" recipeProp.img " class="card-img" alt="...">
+<!-- <div  class="card text-bg-dark recipe-card">
+    <img  :src=" recipeProp.img " class="card-img img-fluid" alt="...">
 
     <div class=" card-img-overlay text-bg text-white">
       <h5 style=" background-color: rgba(53, 53, 53, 0.626);" class=" p-1 w-50 rounded card-title ">{{ recipeProp.category }}</h5>
@@ -11,16 +11,18 @@
         <p  style=" background-color: rgba(53, 53, 53, 0.626);" class=" w-50 p-1 border border-black rounded card-text">Recipe Description</p>
       </div>
     </div>
+  </div> -->
 
+
+<!-- //ANCHOR - Recipe card mach 2 (below) -->
+<div class="container-fluid">
+  <img class="img-container img-fluid elevation-5 rounded" :src="recipeProp.img" alt="">
+  <div class="overlay-info">
+    <h5 @click="setActiveRecipe(recipeProp.id)"><em>{{ recipeProp.title }}</em></h5>
+    <p >{{ recipeProp.category }}</p>
+    <p style="overflow: hidden;" >{{ recipeProp.description }}</p>
   </div>
-
-<!-- <div>
-  <img :src="recipeProp.img" alt="">
-
-  <div class="card-img-overlay">
-    <h5>{{ recipeProp.category }}</h5>
-  </div>
-</div> -->
+</div>
 
 
 
@@ -85,5 +87,27 @@ width: 100%;
 height: 35dvh;
 object-fit: cover;
 }
+
+
+.overlay-info {
+    position: absolute;
+    // top: 15%;
+    // left: 85%;
+    transform: translate(0%, -100%);
+    // z-index: 1;
+    padding: 10px;
+    background-color: rgba(65, 59, 59, 0.696);
+    color: white;
+    border-radius: 5px;
+    overflow: hidden;
+    max-width: 275px;
+    width: 250px;
+    
+    // border-radius: 5px;
+  }
+  .img-container {
+    position: relative;
+    display: inline-block;
+  }
 
 </style>

@@ -2,13 +2,10 @@
 <template>
 
 <form @submit.prevent="searchRecipes()" action="">
-    <div class="d-flex flex-row">
-
-        <input type="text" class="w-100 rounded" v-model="search" placeholder="Search...">
-        <!-- <button class="mdi mdi-magnify" type="submit"></button> -->
-        <i class="mdi mdi-magnify"></i>
+    <div class="d-flex flex-row ps-5 pe-5">
+        <input type="text" autocomplete="off" name="text" class="input" placeholder="Search Recipes...">
     </div>
-    </form>
+</form>
 
 </template>
 
@@ -43,4 +40,21 @@ export default {
 
 <style lang="scss" scoped>
 
+
+.input {
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  padding: .5em;
+  background-color: #ccc;
+  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+  transition: 300ms ease-in-out;
+}
+
+// .input:focus {
+//   background-color: white;
+//   transform: scale(1.05);
+//   box-shadow: 13px 13px 100px #969696,
+//              -13px -13px 100px #ffffff;
+// }
 </style>

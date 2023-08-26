@@ -12,9 +12,9 @@ namespace AllSpice.Repositories
         {
             string sql = @"
             INSERT INTO recipes
-            (title, instructions, img, category, creatorId)
+            (title, instructions, img, category, creatorId,description)
             VALUES 
-            (@Title, @Instructions, @Img, @Category, @CreatorId);
+            (@Title, @Instructions, @Img, @Category, @CreatorId, @Description);
 
             SELECT
                 rec.*,

@@ -15,8 +15,16 @@
 
 
 <div class="card text-bg-dark">
-  <img src="../assets/img/spice-background.png" class="card-img" alt="...">
-  <div class="align-content-center card-img-overlay text-center py-3">
+  <div class="overlay-input d-flex flex-row">
+    <div>
+      <SearchBar/>
+    </div>
+    <div>
+      <Login/>
+    </div>
+  </div>
+  <img src="../assets/img/spice-background.png" class="card-img image-container" alt="...">
+  <div class="align-items-center card-img-overlay text-center ">
     <h5 class="card-title">All Spice</h5>
     <p class="card-text">Cherish Your Family</p>
     <p class="card-text">And Their Cooking</p>
@@ -29,13 +37,29 @@
 
 
 
-
-<section class="row">
+<!-- //NOTE - buttons below work -->
+<!-- <section class="row">
   <div class="">
     <div class=" text-center">
         <button class="elevation-3" @click="filterBy = ''" >Home</button>
       <button class="elevation-3" @click="filterBy= 'myRecipes' " >My Recipes</button>
       <button class="elevation-3" @click="filterBy = 'favorites' " >Favorites</button>
+    </div>
+  </div>
+</section> -->
+
+
+
+
+<section class="row"> 
+  <div class="col-10 col-md-5">
+    <div class="card elevation-3 bg-white">
+      <div class="d-flex justify-content-around">
+        <h5 class="filters" @click="filterBy = ''" >Home</h5>
+        <h5 class="filters" @click="filterBy= 'myRecipes' ">My Recipes</h5>
+        <h5 class="filters" @click="filterBy = 'favorites' " >Favorites</h5>
+      </div>
+
     </div>
   </div>
 </section>
@@ -75,13 +99,18 @@
 
 
 
-
 //NOTE - use code below as recipe card template
 
-  <section class="row">
-  <div class=" container-fluid col-3" v-for="r in recipes" :key="r">
+  <!-- <section class="row">
+  <div class="py-4 container-fluid col-11 col-md-3" v-for="r in recipes" :key="r">
   <RecipeCard :recipeProp="r"/>
   </div>
+  </section> -->
+
+  <section class="row">
+    <div class="ps-3 col-11 col-md-3" v-for="r in recipes" :key="r">
+      <RecipeCard :recipeProp="r"/>
+    </div>
   </section>
 
 
@@ -104,6 +133,7 @@
       </h1>
     </div>
   </div> -->
+
 
 
 
@@ -253,4 +283,29 @@ height: auto;
 }
 
 }
+
+
+.filters:hover{
+  color: #219653;
+  // border-color: #D5BBB1;
+  // border-radius: .5rem;
+}
+
+
+.overlay-input {
+    position: absolute;
+    top: 15%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .image-container {
+    position: relative;
+    display: inline-block;
+  }
+
+
 </style>

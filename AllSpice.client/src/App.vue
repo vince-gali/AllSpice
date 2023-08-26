@@ -1,14 +1,13 @@
 <template>
   <header>
-    <Navbar />
+    <!-- <Navbar /> -->
   </header>
   <main>
     <router-view />
   </main>
    <footer class="bg-dark text-light">
-    <!-- Made with 💖 by CodeWorks -->
-    <div class="mb-5 sticky-bottom">
-      <img data-bs-toggle="modal" data-bs-target="#addRecipe" class=" rounded container-fluid" src="./assets/img/add-recipe.png" alt="">
+    <div class="mb-5 sticky">
+      <img data-bs-toggle="modal" data-bs-target="#addRecipe" class="addBtn sticky rounded container-fluid" src="./assets/img/add-recipe.png" alt="">
     </div>
   </footer>
 
@@ -55,4 +54,12 @@ footer {
   position: sticky;
   top: 0;
 }
+
+.addBtn:hover{
+  transition: .04s ease-in;
+  transform: scale(1.1);
+}
+// .imgSticky{
+//   position: sticky;
+// }
 </style>
