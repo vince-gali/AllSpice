@@ -15,14 +15,31 @@
 
 
 <!-- //ANCHOR - Recipe card mach 2 (below) -->
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <img class="img-container img-fluid elevation-5 rounded" :src="recipeProp.img" alt="">
   <div class="overlay-info">
     <h5 @click="setActiveRecipe(recipeProp.id)"><em>{{ recipeProp.title }}</em></h5>
     <p >{{ recipeProp.category }}</p>
     <p style="overflow: hidden;" >{{ recipeProp.description }}</p>
   </div>
+</div> -->
+
+
+<!-- //ANCHOR - Recipe card mach 3 (below) -->
+
+<div class="col-md-3 col-10 p-2">
+  <div class="card elevation-5 ">
+    <img class="rounded" :src="recipeProp.img" alt="">
+    <div class="recipeInfo">
+      <h3  @click="setActiveRecipe(recipeProp.id)" class="textBg">{{ recipeProp.title }}</h3>
+    </div>
+    <div class="recipeCat">
+      <p class="textBg"><em>{{ recipeProp.category }}</em></p>
+    </div>
+  </div>
 </div>
+
+
 
 
 
@@ -109,5 +126,30 @@ object-fit: cover;
     position: relative;
     display: inline-block;
   }
+
+  .recipeInfo{
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    transform: translate(-50%,-0%);
+    
+}
+
+  .recipeCat{
+    position: absolute;
+    top: 75%;
+    left: 20%;
+    transform: translate(-50%,-0%);
+    
+}
+
+.textBg{
+  color: white;
+  // background-color: black;
+  border: 2px solid rgba(0, 0, 0, 0.185);
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.553);
+  padding: .5rem;
+}
 
 </style>

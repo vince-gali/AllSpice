@@ -3,18 +3,28 @@ namespace AllSpice.Services;
 public class FavoritesService
     {
         private readonly FavoritesRepo _repo;
+        private readonly RecipesRepo _recRepo;
 
-        public FavoritesService(FavoritesRepo repo)
+        public FavoritesService(FavoritesRepo repo, RecipesRepo recRepo)
         {
             _repo = repo;
+            _recRepo = recRepo;
         }
 
-        internal Favorite AddFavorite(Favorite favoriteData)
+        internal Favorite AddFavorite([FromBody]Favorite favoriteData)
         {
+            var recipe = _recRepo.GetRecipeById(favoriteData.RecipeId);
             Favorite newFavorite = _repo.AddFavorite(favoriteData);
             return newFavorite;
 
         }
+
+        // internal Favorite AddFavorite(Favorite favoriteData)
+        // {
+        //     Favorite newFavorite = _repo.AddFavorite(favoriteData);
+        //     return newFavorite;
+
+        // }
 
         internal List<FavoriteRecipe>GetMyFavoriteRecipes(string accountId)
         {

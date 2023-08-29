@@ -51,7 +51,7 @@
 
 
 
-<section class="row"> 
+<section class="row py-2"> 
   <div class="col-10 col-md-5">
     <div class="card elevation-3 bg-white">
       <div class="d-flex justify-content-around">
@@ -99,7 +99,7 @@
 
 
 
-//NOTE - use code below as recipe card template
+<!-- //NOTE - use code below as recipe card template -->
 
   <!-- <section class="row">
   <div class="py-4 container-fluid col-11 col-md-3" v-for="r in recipes" :key="r">
@@ -107,11 +107,15 @@
   </div>
   </section> -->
 
-  <section class="row">
+  <!-- <section class="row">
     <div class="ps-3 col-11 col-md-3" v-for="r in recipes" :key="r">
       <RecipeCard :recipeProp="r"/>
     </div>
-  </section>
+  </section> -->
+
+  <div class="hmRecipes">
+    <RecipeCard v-for="r in recipes" :key="r.id" :recipeProp="r"/>
+  </div>
 
 
 
@@ -306,6 +310,26 @@ height: auto;
     position: relative;
     display: inline-block;
   }
+
+  .hmRecipes{
+    display: flex;
+  flex-wrap: wrap;
+  }
+
+  @media(max-width: 768px){
+  .hmRecipes{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+}
+
+.row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 
 </style>

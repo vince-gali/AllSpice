@@ -17,10 +17,26 @@ public class FavoritesRepo
             (@AccountId,@RecipeId);
             SELECT LAST_INSERT_ID();
             ";
-            int lastInsertId = _db.ExecuteScalar<int>(sql, favoriteData);
-            favoriteData.Id = lastInsertId;
+            int id = _db.ExecuteScalar<int>(sql, favoriteData);
+            favoriteData.Id = id;
             return favoriteData;
         }
+
+//!SECTION ORIGINAL 'ADD FAVORITE' BELOW
+
+        // internal Favorite AddFavorite (Favorite favoriteData)
+        // {
+        //     string sql = @"
+        //     INSERT INTO favorites
+        //     (accountId, recipeId)
+        //     VALUES 
+        //     (@AccountId,@RecipeId);
+        //     SELECT LAST_INSERT_ID();
+        //     ";
+        //     int lastInsertId = _db.ExecuteScalar<int>(sql, favoriteData);
+        //     favoriteData.Id = lastInsertId;
+        //     return favoriteData;
+        // }
 
         internal List<FavoriteRecipe> GetMyFavoriteRecipes(string accountId)
         {

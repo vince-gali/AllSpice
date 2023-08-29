@@ -16,9 +16,7 @@ namespace AllSpice.Repositories
             VALUES 
             (@Title, @Instructions, @Img, @Category, @CreatorId, @Description);
 
-            SELECT
-                rec.*,
-                creator.*
+            SELECT *
             FROM recipes rec
             JOIN accounts creator ON rec.creatorId = creator.id
             WHERE rec.id = LAST_INSERT_ID();
@@ -35,11 +33,10 @@ namespace AllSpice.Repositories
         internal List<Recipe> GetAllRecipes()
         {
             string sql = @"
-            SELECT
-            rec.*,
-            creator.*
+            SELECT *
             FROM recipes rec
-            JOIN accounts creator ON rec.creatorId = creator.id;
+            JOIN accounts creator ON rec.creatorId = creator.id
+            GROUP BY (rec.id);
             ";
             List<Recipe> recipes = _db.Query<Recipe, Account, Recipe>(sql, (recipe, creator)=>
             {
