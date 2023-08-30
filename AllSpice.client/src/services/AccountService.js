@@ -12,6 +12,11 @@ class AccountService {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
   }
+
+  // async getAccountRecipes(){
+  //   const res = await api.get('account/recipes')
+  //   logger.log("getting my recipes", res.data)
+  // }
 }
 
 export const accountService = new AccountService()

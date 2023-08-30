@@ -27,7 +27,7 @@
 
 <!-- //ANCHOR - Recipe card mach 3 (below) -->
 
-<div class="col-md-3 col-10 p-2">
+<div class="col-md-3 col-10 p-2" v-if="recipeProp">
   <div class="card elevation-5 ">
     <img class="rounded" :src="recipeProp.img" alt="">
     <div class="recipeInfo">

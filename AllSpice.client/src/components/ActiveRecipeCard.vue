@@ -1,6 +1,82 @@
 <template>
+<!-- 
+    <div class="modal-content" v-if="recipeProp">
+        <div class="modal-body">
+            <div  class="sideBy">
+                <img class="modalImg img-fluid" :src="recipeProp.img" alt="">
+                <div class="modalTitle">
+                    <h5>{{ recipeProp.title }}</h5>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h5>{{ recipeProp.instructions }}</h5>
 
-<div class="card mb-3 modal-content" v-if="recipeProp">
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+    </div> -->
+
+
+    <div class="modal-content" v-if="recipeProp" >
+        <div class="modal-body">
+
+            <div class="test">
+
+                
+                <div class="col-4">
+                    <div class="">
+                        <img class="img-fluid modalImg" :src="recipeProp.img" alt="">
+                    </div>
+                </div>
+                
+                <div class="col-8">
+                    <div class="modalTitle">
+                        <h5 class="modalTitle">{{ recipeProp.title }}</h5>
+                    </div>
+
+
+                <div class="d-flex">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Recipe Instructions</h5>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Recipe Ingredients</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>{{ recipeProp.instructions }}</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>{{ recipeProp.ingredients }}</h5>
+                        </div>
+                    </div>
+                </div>
+
+
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<!-- <div class="card mb-3 modal-content" v-if="recipeProp">
   <div class="row ">
     <div class="col-4">
       <img class="img" :src="recipeProp.img" alt="...">
@@ -60,7 +136,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 
 
@@ -192,6 +268,34 @@ aspect-ratio: 1/1;
     display: flex;
     align-content: center;
     // object-fit: c;
+}
+
+.sideBy{
+    display: flex;
+
+}
+
+.modalImg{
+    // max-height: 75vh;
+    min-width: 250px;
+    // position: relative;
+    // aspect-ratio: 1/1;
+}
+
+.modalTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.test{
+    display: flex;
+    // flex-direction: row;
+}
+
+.modalSize{
+    // min-width: 350px;
+    // max-width: 800px;
 }
 
 

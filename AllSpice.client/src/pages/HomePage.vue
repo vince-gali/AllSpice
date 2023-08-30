@@ -28,9 +28,13 @@
     <h5 class="card-title">All Spice</h5>
     <p class="card-text">Cherish Your Family</p>
     <p class="card-text">And Their Cooking</p>
-    <!-- <p class="card-text"><small>Last updated 3 mins ago</small></p> -->
   </div>
 </div>
+
+<!-- <div class="homePage">
+  <img src="../assets/img/spice-background.png" alt="">
+//NOTE - left off right here
+</div> -->
 
 
 
