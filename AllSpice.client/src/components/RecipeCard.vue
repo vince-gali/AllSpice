@@ -29,7 +29,14 @@
 
 <div class="col-md-3 col-10 p-2" v-if="recipeProp">
   <div class="card elevation-5 ">
-    <img class="rounded" :src="recipeProp.img" alt="">
+    <img class="rounded" :src="recipeProp.img" alt=""> 
+
+    <div class="favorite">
+      <i @click="addFavorite(recipeProp.id)" class=" textBg mdi mdi-heart-outline"></i>
+      <!-- //TODO - modify @click below so that it removes a favorite ... also show a outlined heart only if they are not on the favorites lies -->
+      <!-- <i @click="addFavorite(recipeProp.id)" class=" textBg mdi mdi-heart-outline"></i> -->
+    </div>   
+    
     <div class="recipeInfo">
       <h3  @click="setActiveRecipe(recipeProp.id)" class="textBg">{{ recipeProp.title }}</h3>
     </div>
@@ -64,6 +71,8 @@ export default {
     setup(){
 
       const route = useRoute()
+
+  
 
       
       
@@ -132,6 +141,13 @@ object-fit: cover;
     top: 10%;
     left: 40%;
     transform: translate(-50%,-0%);
+    
+}
+  .favorite{
+    position: absolute;
+    top: 5%;
+    left: 80%;
+    // transform: translate(-10%,-0%);
     
 }
 

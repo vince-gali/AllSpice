@@ -15,7 +15,7 @@ CREATE TABLE recipes(
   instructions VARCHAR(300) NOT NULL,
   img VARCHAR(500) NOT NULL,
   category VARCHAR(225) NOT NULL DEFAULT "misc", 
-  description VARCHAR (600) NOT NULL,
+  description VARCHAR (600),
   creatorId VARCHAR(255) NOT NULL,
   FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';

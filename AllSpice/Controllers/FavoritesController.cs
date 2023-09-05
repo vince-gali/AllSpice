@@ -21,9 +21,9 @@ namespace AllSpice.Controllers
             {
                 Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
                 favoriteData.AccountId = userInfo.Id;
-                Favorite newFavorite = _favoritesService.AddFavorite(favoriteData);
-                // return Ok(newFavorite);
-                return new ActionResult<Favorite>(Ok(newFavorite));
+                Favorite favorite = _favoritesService.AddFavorite(favoriteData);
+                return Ok(favorite);
+                // return new ActionResult<Favorite>(Ok(newFavorite));
             }
             catch (Exception e)
             {

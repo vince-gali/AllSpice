@@ -61,23 +61,27 @@
       <div class="d-flex justify-content-around">
         <h5 class="filters" @click="filterBy = ''" >Home</h5>
         <h5 class="filters" @click="filterBy= 'myRecipes' ">My Recipes</h5>
-        <h5 class="filters" @click="filterBy = 'favorites' " >Favorites</h5>
+        <!-- <h5 class="filters" @click="getMyFavorites()" >Favorites</h5> -->
+        <h5 class="filters" @click="filterBy = 'myFavorites' " >Favorites</h5>
       </div>
-
     </div>
   </div>
 </section>
 
-
-<!-- <section class="row">
-  <div class="text-center">
-    <div class="d-flex flex-wrap ">
-        <p class="p-2 elevation-3" @click="getRecipes()" >Home</p>
-      <p class="p-2 elevation-3" @click="getMyRecipes()" >My Recipes</p>
-      <p class="p-2 elevation-3" @click="getFavorites()" >Favorites</p>
+<!-- 
+<section class="row py-2"> 
+  <div class="col-10 col-md-5">
+    <div class="card elevation-3 bg-white">
+      <div class="d-flex justify-content-around">
+        <h5 class="filters" @click="filterBy = ''" >Home</h5>
+        <h5 class="filters" @click="filterBy= 'myRecipes' ">My Recipes</h5>
+        <h5 class="filters" @click="filterBy = 'favorites' " >Favorites</h5>
+      </div>
     </div>
   </div>
 </section> -->
+
+
 
 
 
@@ -155,6 +159,7 @@ import { recipesService } from '../services/RecipesService.js';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { AppState } from '../AppState.js';
+import { accountService } from '../services/AccountService.js';
 
 export default {
   setup() {
@@ -172,10 +177,20 @@ export default {
       }
     }
 
+    // async function getMyFavorites(){
+    //   try {
+    //     await accountService.getAccountFavorites()
+    //   } catch (error) {
+    //     Pop.error(error.message)
+    //     logger.log(error)
+    //   }
+    // }
+
    
 
     onMounted(()=>{
       getRecipes()
+      // getMyFavorites()
     })
 
     return {

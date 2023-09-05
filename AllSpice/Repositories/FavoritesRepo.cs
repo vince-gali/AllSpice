@@ -10,13 +10,12 @@ public class FavoritesRepo
 
         internal Favorite AddFavorite (Favorite favoriteData)
         {
-            string sql = @"
+            string sql = @$"
             INSERT INTO favorites
-            (accountId, recipeId)
-            VALUES 
-            (@AccountId,@RecipeId);
-            SELECT LAST_INSERT_ID();
-            ";
+            (AccountId, RecipeId)
+            VALUES ('{favoriteData.AccountId}' , '{favoriteData.RecipeId}');
+            SELECT LAST_INSERT_ID()
+            ;";
             int id = _db.ExecuteScalar<int>(sql, favoriteData);
             favoriteData.Id = id;
             return favoriteData;

@@ -14,8 +14,8 @@ public class FavoritesService
         internal Favorite AddFavorite([FromBody]Favorite favoriteData)
         {
             var recipe = _recRepo.GetRecipeById(favoriteData.RecipeId);
-            Favorite newFavorite = _repo.AddFavorite(favoriteData);
-            return newFavorite;
+            Favorite favorite = _repo.AddFavorite(favoriteData);
+            return favorite;
 
         }
 

@@ -13,10 +13,17 @@ class AccountService {
     }
   }
 
-  // async getAccountRecipes(){
-  //   const res = await api.get('account/recipes')
-  //   logger.log("getting my recipes", res.data)
-  // }
+  async getAccountRecipes(){
+    const res = await api.get('account/recipes')
+    logger.log("getting my recipes", res.data)
+    AppState.myFavorites = res.data
+  }
+  
+  async getAccountFavorites(){
+    const res = await api.get('account/favorites')
+    logger.log('Getting Account Favorites',res.data)
+  }
+
 }
 
 export const accountService = new AccountService()

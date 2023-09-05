@@ -17,7 +17,7 @@ export const AppState = reactive({
 
   query: null,
 
-  favorites: [],
+  myFavorites: [],
   instructions:[]
 
 })

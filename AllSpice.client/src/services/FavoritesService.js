@@ -8,7 +8,7 @@ class FavoritesService{
     async addFavorite(recipeId){
         const res = await api.post('api/favorites', {recipeId})
         logger.log('Adding to favorites', res.data)
-        AppState.favorites = AppState.favorites.filter(f => new Favorites(res.data))
+        AppState.myFavorites = AppState.myFavorites.filter(f => new Favorites(res.data))
 
     }
 }
