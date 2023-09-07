@@ -3,7 +3,7 @@
 
 <form @submit.prevent="searchRecipes()" action="">
     <div class="d-flex flex-row ps-5 pe-5">
-        <input type="text" autocomplete="off" name="text" class="input" placeholder="Search Recipes...">
+        <input v-model="search" type="text"   class="input" placeholder="Search Recipes..." >
     </div>
 </form>
 
@@ -20,9 +20,9 @@ export default {
 
         const search = ref('')
         return {
-
-            search, 
             
+            search, 
+
             async searchRecipes(){
                 try {
                     const searchTerm = search.value

@@ -58,10 +58,11 @@
 <section class="row py-2"> 
   <div class="col-10 col-md-5">
     <div class="card elevation-3 bg-white">
-      <div class="d-flex justify-content-around">
-        <h5 class="filters" @click="filterBy = ''" >Home</h5>
-        <h5 class="filters" @click="filterBy= 'myRecipes' ">My Recipes</h5>
-        <!-- <h5 class="filters" @click="getMyFavorites()" >Favorites</h5> -->
+      <div class="d-flex pt-1 justify-content-around">
+        <h5  class="filters" @click="filterBy = ''" >Home</h5>
+        <!-- <h5 v-if="filterBy=''"  class="activeText filters" @click="filterBy = ''" >Home</h5> -->
+        <h5 class="filters" @click="filterBy= 'myRecipes' " id="myRecipes">My Recipes</h5>
+        <!-- <h5 class="filters" @click="getMyFavorites(user.id)" id="myFavorites" >Favorites</h5> -->
         <h5 class="filters" @click="filterBy = 'myFavorites' " >Favorites</h5>
       </div>
     </div>
@@ -197,13 +198,38 @@ export default {
 
       filterBy,
 
-      recipes: computed(()=> 
+     async getMyFavorites(){
+      try {
+        await accountService.getAccountFavorites()
+        
+      } catch (error) {
+        Pop.error(error)
+        
+      }
+     },
+    
+      user: computed(()=> AppState.user),
+      // recipes: computed(()=> 
+      // {
+      //   if(filterBy.value == ""){
+      //     return AppState.recipes
+      //   } else{
+      //     return AppState.recipes.filter(r => r.creatorId == AppState.account.id)
+      //   }
+      // }),
+      recipes: computed(()=>
       {
-        if(filterBy.value == ""){
-          return AppState.recipes
-        } else{
-          return AppState.recipes.filter(r => r.creatorId == AppState.account.id)
-        }
+      if(filterBy.value == ''){
+        return AppState.recipes
+      } 
+      else if(filterBy.value == 'myFavorites'){
+        return AppState.myFavorites
+      }
+      else {
+        return AppState.recipes.filter(r => r.creatorId == AppState.account.id)
+      }
+      
+        
       })
 
       // recipes: computed(()=>AppState.recipes),
@@ -348,6 +374,10 @@ height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.activeText{
+  color: #219653;
 }
 
 

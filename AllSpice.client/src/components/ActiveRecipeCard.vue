@@ -19,8 +19,33 @@
         </div>
     </div> -->
 
+<div class="modal-content" v-if="recipeProp" >
+    <div class="modal-body modalLayout">
 
-    <div class="modal-content" v-if="recipeProp" >
+        <div class="">
+            <img class="img-fluid modalImg" :src="recipeProp.img" alt="">
+        </div>
+<!-- right side of card -->
+        <div class=" ps-5">
+            <div>
+                <h4>{{ recipeProp.title }}</h4>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h5>Recipe Instructions</h5>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+    <!-- <div class="modal-content" v-if="recipeProp" >
         <div class="modal-body">
 
             <div class="test">
@@ -37,106 +62,51 @@
                         <h5 class="modalTitle">{{ recipeProp.title }}</h5>
                     </div>
 
+                    <div class="test">
 
-                <div class="d-flex">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5>Recipe Instructions</h5>
+                        <div class="d-flex">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Recipe Instructions</h5>
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Recipe Ingredients</h5>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+                <div class="test">
+
+                    
+                    <div class="d-flex">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>{{ recipeProp.instructions }}</h5>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="card">
-                        <div class="card-header">
-                            <h5>Recipe Ingredients</h5>
+                    <div class="">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>{{ recipeProp.ingredients }}Ingredients</h5>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="d-flex">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>{{ recipeProp.instructions }}</h5>
-                        </div>
-                    </div>
                 </div>
-
-                <div class="d-flex">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>{{ recipeProp.ingredients }}</h5>
-                        </div>
-                    </div>
-                </div>
-
 
                     
                 </div>
             </div>
 
         </div>
-    </div>
+    </div> -->
 
-<!-- <div class="card mb-3 modal-content" v-if="recipeProp">
-  <div class="row ">
-    <div class="col-4">
-      <img class="img" :src="recipeProp.img" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{{ recipeProp.title }}</h5>
-        <div class="d-flex flex-wrap p-1">
-            <div class="card col-6">
-            <div class="card-header">
-                <p>Recipe instructions:</p>
-            </div>
-            <div class="card-body">
-                <p>{{ recipeProp.instructions }}</p>
-                <div class="modal-body">
-                    <form @submit="addInstruction()" v-if="recipeProp.creatorId == user.id">
-                        <div class="input-group mb-3">
-                            <input v-model="editable.instructions" type="text"  class="form-control" placeholder="Add Instruction"  aria-describedby="button-addon2">
-                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2"> <i class="mdi mdi-plus"></i> </button>
-                        </div>
-                    </form>
-
-                </div>
-            </div>
-            </div>
-            <div class="card col-6">
-            <div class="card-header">
-                <p>Ingredients List:</p>
-            </div>
-            <div class="card-body">
-                <div>
-                    {{ recipeIngredients }}
-                </div>
-                <form v-if="recipeProp.creatorId == user.id" @submit.prevent="addIngredient()">
-                    <div class="input-group mb-3">
-                        <input v-model="editable.name" type="text" class="form-control" name="name" placeholder="Add Ingredient" aria-label="Ingredient" aria-describedby="button-addon2">
-                     </div>
-                     <div>
-                        <input v-model="editable.quantity" type="text" class="form-control" name="quantity" placeholder="Qty:" aria-label="Quantity" aria-describedby="button-addon2">
-                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2"> <i class="mdi mdi-plus"></i> </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div class="modal-footer">
-            <button class="bg-danger" @click="deleteRecipe(recipeProp.id)" v-if="recipeProp.creatorId == user.id">Remove Recipe</button>
-        </div>
-
-        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
 
 
 
@@ -257,6 +227,8 @@ aspect-ratio: 1/1;
 .card-header{
     background-color: #527360;
     color:#fff ;
+    min-width: 300px;
+    // padding: 2rem;
 }
 
 .card-img img{
@@ -290,7 +262,7 @@ aspect-ratio: 1/1;
 
 .test{
     display: flex;
-    // flex-direction: row;
+    flex-direction: row;
 }
 
 .modalSize{
@@ -298,5 +270,14 @@ aspect-ratio: 1/1;
     // max-width: 800px;
 }
 
+.modalLayout{
+    display: flex;
+    flex-direction: row;
+
+}
+
+// .modal-content{
+//     max-width: 90%;
+// }
 
 </style>

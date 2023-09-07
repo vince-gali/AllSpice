@@ -34,11 +34,14 @@ class RecipesService{
     async searchRecipes(searchTerm){
         const res = await api.get('api/recipes', {
             params:{
-                search: searchTerm
+                query: searchTerm
+                // search: searchTerm
             }
         })
         AppState.query = searchTerm
         AppState.recipes = res.data.map(r=> new Recipe(r))
+        // AppState.recipes = res.data.map(r=> new Recipe(r))
+        
     }
 
     async addInstruction(formData){
